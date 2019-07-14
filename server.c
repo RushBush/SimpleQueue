@@ -29,6 +29,8 @@ int main()
         return -1;
     }
 
+    printf("Create queue %d\n",msgid);
+
     if (0!=msgsnd(msgid,&bufp,15*sizeof(char),IPC_NOWAIT))
     {
         printf("Can't send message\n");
@@ -43,6 +45,9 @@ int main()
 
     printf("Receive: %s\n",rec.msg);
 
+    
+    msgctl(msgid,IPC_RMID,0);
+    printf("Delete queue %d\n",msgid);
 
     return 0;
 }
